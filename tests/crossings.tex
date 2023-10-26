@@ -3,30 +3,35 @@
 \documentclass{article}
 
 \usepackage{tikz}
-\usetikzlibrary{braids}
+\usetikzlibrary{braids,calc}
 
+\newcommand{\braidcode}{}
 \begin{document}
-
+\begin{center}
 \begin{tikzpicture}
 \pic[
   braid/.cd,
   strand 1/.style={red},
-] (braid) at (1,2) {braid={s_1 s_2^{-1} s_1^1}};
+  strand 4/.style={blue},
+  ] (braid1) at (0,0) {braid={s_1 s_2^{-1} s_1^1 s_{1,4} s_{1-4}}};
 \pic[
   braid/.cd,
   flip crossings,
   strand 1/.style={red},
-] (braid) at (4,2) {braid={s_1 s_2^{-1} s_1^1}};
+  strand 4/.style={blue},
+  ] (braid2) at ($(braid1.north east)+(1,0)$) {braid={s_1 s_2^{-1} s_1^1 s_{1,4} s_{1-4}}};
 \pic[
   braid/.cd,
   set crossings=over,
   strand 1/.style={red},
-] (braid) at (7,2) {braid={s_1 s_2^{-1} s_1^1}};
+  strand 4/.style={blue},
+  ] (braid3) at ($(braid2.north east)+(1,0)$) {braid={s_1 s_2^{-1} s_1^1 s_{1,4} s_{1-4}}};
 \pic[
   braid/.cd,
   set crossings=under,
   strand 1/.style={red},
-] (braid) at (10,2) {braid={s_1 s_2^{-1} s_1^1}};
+  strand 4/.style={blue},
+  ] (braid4) at ($(braid3.north east)+(1,0)$) {braid={s_1 s_2^{-1} s_1^1 s_{1,4} s_{1-4}}};
 \end{tikzpicture}
-
+\end{center}
 \end{document}
